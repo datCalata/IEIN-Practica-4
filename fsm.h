@@ -50,7 +50,7 @@ typedef struct fsm_trans_ {
 	int orig_state;
 	fsm_input_func_t in;
 	int dest_state;
-	fsm_output_func_t out;
+	fsm_output_func_t  out;
 } fsm_trans_t;
 
 struct fsm_ {

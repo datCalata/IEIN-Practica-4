@@ -55,5 +55,13 @@ int fsm_delete(fsm_t* fsm){
 
 void fsm_fire (fsm_t* this)
 {
-	//TODO Comprobación de condiciones de la tabla y transición de estado
+	fsm_trans_t* t;
+	for (t = this->tt; t->orig_state >= 0; ++t) {
+		if ((this->current_state == t->orig_state) && t->in(this)) {
+			this->current_state = t->dest_state;
+			if (t->out)
+				t->out(this);
+			break;
+		}
+	}
 }

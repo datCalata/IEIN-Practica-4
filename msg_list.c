@@ -18,7 +18,6 @@ msg_list_t* msg_list_init(void){
 }
 
 int msg_list_delete(msg_list_t* msg_list){
-	//TODO TEXT IT
 	msg_list_t* aux;
 	while(msg_list->next != NULL){
 		aux = msg_list->next;
@@ -35,14 +34,16 @@ int msg_list_push_element(msg_list_t* msg_list, char* msg){
 
 	//TODO TEST IT
 
-	msg_list_t* entry = (msg_list_t*)malloc(sizeof(msg_list_t));
+	msg_list_t* entry;
+	entry = (msg_list_t*)malloc(sizeof(msg_list_t));
 	if(entry == NULL){
 		fprintf(stderr,"Error de memoria, no se puede introducir \n");
 		return 0;
 	}
 	entry->msg = msg;
-	entry->next = NULL;
+	entry->next = msg_list->next;
 	msg_list->next = entry;
+	printf("mensaje aniadido %S",msg);
 	return 1;
 }
 
@@ -53,12 +54,18 @@ char* msg_list_pop_element(msg_list_t* msg_list){	//Devolver NULL si la lista es
 
 	msg_list_t* actual = msg_list;
 	msg_list_t* next = msg_list->next;
+	char* msg = NULL;
+
 	if(next == NULL){
 		return NULL;
 	}
-	while(next != NULL){
+	while(next->next != NULL){
 		actual = next;
 		next = actual->next;
 	}
-	return actual->msg;
+
+	msg = next->msg;
+	free(next);
+	actual->next = NULL;
+	return msg;
 }

@@ -30,4 +30,5 @@ int main ()
 	}
 
 	delete_dron_fsm((dron_fsm_t*) fsm);
+
 }

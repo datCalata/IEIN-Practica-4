@@ -23,7 +23,10 @@
 
 typedef enum fsm_state {
 	//TODO	Posibles estados de la máquina de estados del dron
-	STOPPED,RISING,STABLE,DESCENDING
+	STOPPED = 0,
+	RISING = 1,
+	STABLE = 2,
+	DESCENDING = 3
 }dron_fsm_state_t;
 
 
